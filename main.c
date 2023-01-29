@@ -259,6 +259,10 @@ void quickSortMachine(){
 }
 
 
+void heapSortMachine(){
+    
+}
+
 
 
 
