@@ -98,78 +98,7 @@ def main(lab_template, theory_template, timetable):
     lb_matrix = mark_slots(lb, lb_matrix, lab_template)
 
     # Lab and Theory to a csv
-    final_timetable = (th_matrix+lb_matrix)
-    final = final_timetable.copy()
-    # final.columns = ['8:30-9:30', '9:30-10:30', '10:30-11:30', '11:30-12:30', '12:30-1:30', '1:30-2:30', '2:30-3:30', '3:30-4:30', '4:30-5:30', '5:30-6:30', '6:30-7:30', '7:30-8:30']
-
-    final_timetable.to_csv('tt.csv', index=False)
-
-    return final
-
-def nor_lab_template(final_timetable1, final_timetable2):
-    # Convert float to int
-    final_timetable1 = final_timetable1.astype(int)
-    final_timetable2 = final_timetable2.astype(int)
-
-    # Add the two dataframes final_timetable1 and final_timetable2
-    final_timetable = final_timetable1 | final_timetable2
-
-    # invert the dataframe
-    final_timetable = final_timetable.applymap(lambda x: 0 if x == 1 else 1)
-
-    
-    # COnvert to csv
-    final_timetable.to_csv('final_tt.csv', index=False)
-    final_timetable.to_json('final_tt.json', orient='split')
-    return final_timetable
-    # print(final_timetable)
-
-def build_heatmap(final_timetable):
-    # heatmap with plotly
-    import plotly.graph_objects as go
-    import plotly.express as px
-    import plotly.figure_factory as ff
-    import numpy as np
-
-    # Create a figure
-    fig = ff.create_annotated_heatmap(z=final_timetable.values, x=list(final_timetable.columns), y=list(final_timetable.index), colorscale='plotly3', showscale=False)
-
-    # Add title
-    fig.update_layout(
-        title_text='Timetable',
-        xaxis_nticks=36
-    )
-
-    # Add custom xaxis title
-    fig.update_xaxes(title_text="Time")
-    
-    # Add custom yaxis title
-    fig.update_yaxes(title_text="Day")
-
-    # Show grid
-    fig.update_xaxes(showgrid=True, gridwidth=1, gridcolor='black')
-
-    # Reverse yaxis
-    fig.update_yaxes(autorange="reversed")
-    
-
-    fig.show()
-
-def change_col_time(final_timetable):
-    # Change the column names to time
-    final_timetable.columns = ['8', '8:10', '8:20', '8:30', '8:40', '8:50', '9', '9:10', '9:20', '9:30', '9:40', '9:50', '10', '10:10', '10:20', '10:30', '10:40', '10:50', '11', '11:10', '11:20', '11:30', '11:40', '11:50', '12', '12:10', '12:20', '12:30', '12:40', '12:50', '1', '1:10', '1:20', '1:30', '1:40', '1:50', '2', '2:10', '2:20', '2:30', '2:40', '2:50', '3', '3:10', '3:20', '3:30', '3:40', '3:50', '4', '4:10', '4:20', '4:30', '4:40', '4:50', '5', '5:10', '5:20', '5:30', '5:40', '5:50', '6', '6:10', '6:20', '6:30', '6:40', '6:50', '7', '7:10', '7:20', '7:30', '7:40', '7:50']
-    # Change Day to Day of the week
-    final_timetable.index = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
-
-    return final_timetable
-
-    
-
-
-
-
-
-
+    (th_matrix+lb_matrix).to_csv('tt.csv', index=False)
 
 timetable = """MON	THEORY	A1	F1	D1-STS3201-SS-SJT305-ALL	TB1	TG1	-	Lunch	A2-CSE1006-TH-SJT603-ALL	F2-CSE3501-ETH-SJT522-ALL	D2-CSE2006-ETH-SJT424-ALL	TB2	TG2	-	V3
 LAB	L1	L2	L3	L4	L5-CSE3501-ELA-SJT418-ALL	L6-CSE3501-ELA-SJT418-ALL	Lunch	L31	L32	L33	L34	L35	L36	-
@@ -231,11 +160,4 @@ lab_template = {
     12: [58, 67],
 }
 
-arhit_timetable = main(lab_template, theory_template, timetable)
-viral_timetable = main(lab_template, theory_template, bbs_table)
-
-arhit_timetable = change_col_time(final_timetable=arhit_timetable)
-viral_timetable = change_col_time(final_timetable=viral_timetable)
-
-final_timetable = nor_lab_template(viral_timetable, arhit_timetable)
-build_heatmap(final_timetable)
+main(lab_template, theory_template, timetable)
