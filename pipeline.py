@@ -160,4 +160,4 @@ lab_template = {
     12: [59, 68],
 }
 
-main(lab_template, theory_template, bbs_table)
+main(lab_template, theory_template, timetable)

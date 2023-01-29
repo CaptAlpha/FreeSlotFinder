@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time-Table</title>
+</head>
+<body>
+    <script>
+        json = {
+  "columns": [
+    0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+    21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39,
+    40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58,
+    59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71
+  ],
+  "index": [0, 1, 2, 3, 4, 5, 6],
+  "data": [
+    [
+      0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+    ],
+    [
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1,
+      1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+      1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+    ],
+    [
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1,
+      1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+    ],
+    [
+      0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1,
+      1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+    ],
+    [
+      0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0,
+      0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+    ],
+    [
+      1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+      1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+      1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+    ],
+    [
+      1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+      1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+      1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+    ]
+  ]
+}
+
+// Constructing the table
+var table = document.createElement("table");
+table.setAttribute("id", "table");
+table.setAttribute("border", "1");
+table.setAttribute("style", "border-collapse: collapse;");
+var tbody = document.createElement("tbody");
+var tr = document.createElement("tr");
+var th = document.createElement("th");
+th.innerHTML = " ";
+tr.appendChild(th);
+for (var i = 0; i < json.columns.length; i++) {
+    var th = document.createElement("th");
+    th.innerHTML = json.columns[i];
+    tr.appendChild(th);
+}
+tbody.appendChild(tr);
+for (var i = 0; i < json.index.length; i++) {
+    var tr = document.createElement("tr");
+    var th = document.createElement("th");
+    th.innerHTML = json.index[i];
+    tr.appendChild(th);
+
+    for (var j = 0; j < json.columns.length; j++) {
+        var td = document.createElement("td");
+        td.innerHTML = json.data[i][j];
+        tr.appendChild(td);
+    }
+    tbody.appendChild(tr);
+}
+
+table.appendChild(tbody);
+document.body.appendChild(table);
+
+// Styling the table
+var table = document.getElementById("table");
+// Make cell of equal size
+var cell = table.getElementsByTagName("td");
+for (var i = 0; i < cell.length; i++) {
+    cell[i].style.width = "25px";
+    cell[i].style.height = "25px";
+}
+
+// Make the cell of the same color as the value
+for (var i = 0; i < cell.length; i++) {
+    if (cell[i].innerHTML == 0) {
+        cell[i].style.backgroundColor = "#20aaaa";
+    } else {
+        cell[i].style.backgroundColor = "#20faa5";
+    }
+}
+
+
+
+    </script>
+
+    <style>
+
+
+
+
+    </style>
+</body>
+</html>
